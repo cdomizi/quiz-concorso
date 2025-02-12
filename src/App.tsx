@@ -1,5 +1,11 @@
+import { PDFContent } from "./components/PDFContent";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <PDFContent />
+    </>
+  );
 }
 
 export default App;
