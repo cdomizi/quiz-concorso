@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
+import { getQuizSubtitle, getQuizTitle } from "./PDFService";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -9,6 +10,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export function PDFContent() {
   const filePath = "./Domande_2575_v81.pdf";
 
+  const [quizTitle, setQuizTitle] = useState<string>();
+  const [quizSubtitle, setQuizSubtitle] = useState<string>();
   const [quizContent, setQuizContent] = useState<string>();
 
   useEffect(() => {
@@ -30,6 +33,9 @@ export function PDFContent() {
             .join(" ");
         }
 
+        setQuizTitle(getQuizTitle(text));
+        setQuizSubtitle(getQuizSubtitle(text));
+
         await pdf.cleanup(); // Close PDF document
 
         setQuizContent(text); // Update state
@@ -42,7 +48,8 @@ export function PDFContent() {
 
   return (
     <>
-      <h1>Quiz Content:</h1>
+      <h1>{quizTitle}</h1>
+      <h2>{quizSubtitle}</h2>
       <p>{quizContent}</p>
     </>
   );
