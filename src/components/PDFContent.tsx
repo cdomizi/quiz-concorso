@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
-import { getQuizSubtitle, getQuizTitle } from "./PDFService";
+import { getQuizSubtitle, getQuizTitle, splitText } from "./PDFService";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -12,7 +12,7 @@ export function PDFContent() {
 
   const [quizTitle, setQuizTitle] = useState<string>();
   const [quizSubtitle, setQuizSubtitle] = useState<string>();
-  const [quizContent, setQuizContent] = useState<string>();
+  const [quizContent, setQuizContent] = useState<string[]>();
 
   useEffect(() => {
     const getTextFromPDF = async () => {
@@ -36,9 +36,11 @@ export function PDFContent() {
         setQuizTitle(getQuizTitle(text));
         setQuizSubtitle(getQuizSubtitle(text));
 
+        const textSplit = splitText(text);
+
         await pdf.cleanup(); // Close PDF document
 
-        setQuizContent(text); // Update state
+        setQuizContent(textSplit); // Update state
       } catch (error) {
         console.error("Error extracting PDF text:", error);
       }
@@ -50,7 +52,9 @@ export function PDFContent() {
     <>
       <h1>{quizTitle}</h1>
       <h2>{quizSubtitle}</h2>
-      <p>{quizContent}</p>
+      <div>
+        {quizContent?.map((question, index) => <p key={index}>{question}</p>)}
+      </div>
     </>
   );
 }
