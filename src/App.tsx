@@ -1,4 +1,4 @@
-import { PDFContent } from "./components/PDFContent";
+import { PDFContent } from "@components/PDFContent";
 
 function App() {
   return (

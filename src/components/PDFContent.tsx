@@ -1,6 +1,10 @@
+import {
+  getQuizSubtitle,
+  getQuizTitle,
+  splitText,
+} from "@components/PDFService";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
-import { getQuizSubtitle, getQuizTitle, splitText } from "./PDFService";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",

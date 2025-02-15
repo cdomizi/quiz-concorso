@@ -25,7 +25,7 @@ export default tseslint.config(
       ...tseslint.configs.strictTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
       react.configs.flat.recommended,
-      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
     ],
     languageOptions: {
       ecmaVersion: 2020,
