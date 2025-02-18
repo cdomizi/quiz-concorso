@@ -5,6 +5,7 @@ import {
 } from "@components/PDFService";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
+import { FileSelect } from "./FileSelect";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -12,7 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export function PDFContent() {
-  const filePath = "./Domande_2575_v81.pdf";
+  const [filePath, setFilePath] = useState<string>("./Domande_2575_v81.pdf");
 
   const [quizTitle, setQuizTitle] = useState<string>();
   const [quizSubtitle, setQuizSubtitle] = useState<string>();
@@ -50,10 +51,11 @@ export function PDFContent() {
       }
     };
     void getTextFromPDF();
-  }, []);
+  }, [filePath, setFilePath]);
 
   return (
     <>
+      <FileSelect/>
       <h1>{quizTitle}</h1>
       <h2>{quizSubtitle}</h2>
       <div>
