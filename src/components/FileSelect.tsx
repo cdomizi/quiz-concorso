@@ -48,7 +48,6 @@ export function FileSelect({
         id="file-select"
       >
         {" "}
-        <option value={undefined}>--Seleziona un&#39;opzione--</option>
         {quizSelectOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.name}

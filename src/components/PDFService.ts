@@ -1,7 +1,7 @@
 const quizTitleRegex = new RegExp(/^Domande\s+\d+/);
 const quizSubtitleRegex = new RegExp(/Prova OR[A-Z_0-9]+/m);
 const questionTitleRegex = new RegExp(
-  /(SS_[PEDINTD]{2}_\d{1,3}|MdA|CORTA\s–\sPERF\.\sASSESS|MEDIA\s–\sVAL\.\sBIAS|LUNGA\s–\sFEED|LUNGA\s-\sRAV|ENGAGEMENT|DISCOVERY\sLEARNING|APPROCCI\sDIALOGICI|EDUCAZIONE\sFORMALE|LEARNING\sTHEORY|PROGETTAZIONE|SEL)/
+  /(SS_[PEDINGTD]{2,3}_\d{1,3}[_NEW]*|MdA|CORTA\s–\sPERF\.\sASSESS|MEDIA\s–\sVAL\.\sBIAS|LUNGA\s–\sFEED|LUNGA\s-\sRAV|CORTA\s–\sDID\.\sSIGN\._NEW|ENGAGEMENT|DISCOVERY\sLEARNING|APPROCCI\sDIALOGICI|EDUCAZIONE\sFORMALE|LEARNING\sTHEORY|PROGETTAZIONE|GREENCOMP[_NEW]*|SELF[_NEW]*|(?<!\(CA)SEL(?!\sFramework))/
 );
 
 export function getQuizTitle(text: string) {
