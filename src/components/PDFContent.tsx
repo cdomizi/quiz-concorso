@@ -2,6 +2,7 @@ import { getQuestions, getQuizTitle } from "@components/PDFService";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
 import { FileSelect } from "./FileSelect";
+import { Question } from "./Question";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -63,7 +64,9 @@ export function PDFContent() {
       </p>
       <p>Classe di concorso 2575</p>
       <div>
-        {questions?.map((question, index) => <p key={index}>{question}</p>)}
+        {questions?.map((question, index) => (
+          <Question key={index} questionContent={question} index={index} />
+        ))}
       </div>
     </>
   );
