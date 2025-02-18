@@ -26,17 +26,32 @@ function getOptionInfo(filePath: string) {
 
 const quizSelectOptions = FILE_LIST.map((filePath) => getOptionInfo(filePath));
 
-export function FileSelect() {
+export function FileSelect({
+  onSelect,
+}: {
+  onSelect: (filePath: string) => void;
+}) {
+  function handleFileSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedFilePath = event.target.value;
+
+    onSelect(selectedFilePath); // Set state in parent component
+  }
+
   return (
     <>
       <label htmlFor="file-select">Seleziona il quiz: </label>
 
-      <select name="quizzes" id="file-select">
+      <select
+        onChange={handleFileSelect}
+        defaultValue={undefined}
+        name="quizzes"
+        id="file-select"
+      >
         {" "}
         <option value={undefined}>--Seleziona un&#39;opzione--</option>
-        {quizSelectOptions.map((file) => (
-          <option key={file.value} value={file.value}>
-            {file.name}
+        {quizSelectOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.name}
           </option>
         ))}
       </select>

@@ -53,9 +53,13 @@ export function PDFContent() {
     void getTextFromPDF();
   }, [filePath, setFilePath]);
 
+  function onFileSelect(filePath: string) {
+    setFilePath(filePath);
+  }
+
   return (
     <>
-      <FileSelect/>
+      <FileSelect onSelect={onFileSelect} />
       <h1>{quizTitle}</h1>
       <h2>{quizSubtitle}</h2>
       <div>
