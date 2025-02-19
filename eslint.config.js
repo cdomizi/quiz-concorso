@@ -54,12 +54,6 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": 0,
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/prefer-nullish-coalescing": 0,
-      "@typescript-eslint/no-misused-promises": [
-        "error",
-        {
-          checksVoidReturn: false,
-        },
-      ],
       "@typescript-eslint/no-namespace": [2, { allowDeclarations: true }],
       "@typescript-eslint/no-non-null-assertion": "off",
       ...react.configs.recommended.rules,

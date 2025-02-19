@@ -1,9 +1,9 @@
-import { PDFContent } from "@components/PDFContent";
+import { Quiz } from "@components/Quiz";
 
 function App() {
   return (
     <>
-      <PDFContent />
+      <Quiz />
     </>
   );
 }

@@ -26,7 +26,7 @@ function getOptionInfo(filePath: string) {
 
 const quizSelectOptions = FILE_LIST.map((filePath) => getOptionInfo(filePath));
 
-export function FileSelect({
+export function QuizFileSelect({
   onSelect,
 }: {
   onSelect: (filePath: string) => void;
