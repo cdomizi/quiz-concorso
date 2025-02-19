@@ -53,8 +53,10 @@ export function Question({
       </p>
       {scrambledOptions.map((option, index) => (
         <div key={index}>
-          <input type="radio" key={index} value={option} />
-          <label htmlFor={option}>{option}</label>
+          <label>
+            <input type="radio" key={index} name="option" value={option} />
+            {option}
+          </label>
         </div>
       ))}
     </div>
