@@ -1,5 +1,6 @@
 function formatQuestionNumber(index: number) {
-  const questionNumber = index + 1; // Transform 0-based index to 1/based
+  // Transform 0-based into 1-based index
+  const questionNumber = index + 1;
 
   return `${questionNumber.toString()}. `;
 }
@@ -10,8 +11,24 @@ function getQuestionData(questionContent: string) {
   return questionContent.split(optionRegex);
 }
 
-function getRandomNumber(max: number) {
-  return Math.floor(Math.random() * max);
+function scrambleOrder(arr: string[]) {
+  const scrambledArr = [];
+
+  // Array of indices representing the original order
+  const indices = Array.from(Array(arr.length).keys());
+
+  // Shuffle the indices
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+
+  // Rearrange the elements based on the shuffled indices
+  for (const i of indices) {
+    scrambledArr.push(arr[indices[i]]);
+  }
+
+  return scrambledArr;
 }
 
 export function Question({
@@ -25,13 +42,16 @@ export function Question({
   const [question, ...options] = getQuestionData(questionContent);
   const correctAnswer = options[1]; // First option is always the correct answer
 
+  // List options in scrambled order
+  const scrambledOptions = scrambleOrder(options);
+
   return (
     <div>
       <p>
         {questionNumber}
         {question}
       </p>
-      {options.map((option, index) => (
+      {scrambledOptions.map((option, index) => (
         <div key={index}>
           <input type="radio" key={index} value={option} />
           <label htmlFor={option}>{option}</label>
