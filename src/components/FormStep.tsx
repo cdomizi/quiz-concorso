@@ -36,7 +36,7 @@ export function FormStep({
         {questionNumber} / {total}
       </div>
       <fieldset>
-        <legend>{question} question text</legend>
+        <legend>{question}</legend>
         {options.map((option, optionIndex) => (
           <div key={optionIndex}>
             <label>

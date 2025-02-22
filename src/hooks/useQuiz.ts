@@ -40,15 +40,14 @@ function scrambleOrder(arr: string[]) {
   return scrambledArr;
 }
 
-const FILE_PATH = "./Domande_2575_v81.pdf";
-
-export function useQuiz() {
+export function useQuiz(filePath: string) {
   const [questions, setQuestions] = useState<TQuestion[]>();
+  const [step, setStep] = useState<number>(0);
 
   useEffect(() => {
     const setQuizData = async () => {
       try {
-        const quizData = await getQuizData(FILE_PATH);
+        const quizData = await getQuizData(filePath);
 
         const questionsData = quizData?.questions;
 
@@ -78,7 +77,49 @@ export function useQuiz() {
     };
 
     void setQuizData();
-  }, []);
+  }, [filePath]);
 
-  return { questions, setQuestions };
+  const isLast = !!questions?.length && step === questions.length - 1;
+
+  function handlePrev() {
+    if (step > 0) setStep((currentStep) => currentStep - 1);
+  }
+
+  function handleNext() {
+    if (!isLast) setStep((currentStep) => currentStep + 1);
+  }
+
+  function setAnswer(selectedAnswer: string) {
+    if (questions?.length) {
+      setQuestions((currentQuestions) => {
+        const answeredQuestion = { ...questions[step], selectedAnswer };
+        const newQuestions = currentQuestions?.toSpliced(
+          step,
+          1,
+          answeredQuestion
+        );
+
+        return newQuestions;
+      });
+    }
+  }
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const selectedAnswer = event.target.value;
+    setAnswer(selectedAnswer);
+  };
+
+  function goTo(index: number) {
+    setStep(index);
+  }
+
+  return {
+    questions,
+    step,
+    isLast,
+    handlePrev,
+    handleNext,
+    handleChange,
+    goTo,
+  };
 }
