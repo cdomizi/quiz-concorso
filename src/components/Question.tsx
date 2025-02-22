@@ -1,69 +1,93 @@
-function formatQuestionNumber(index: number) {
-  // Transform 0-based into 1-based index
-  const questionNumber = index + 1;
-
-  return `${questionNumber.toString()}. `;
-}
-
-function getQuestionData(questionContent: string) {
-  const optionRegex = new RegExp(/\s?\[[abcd]\]\s?/);
-
-  return questionContent.split(optionRegex);
-}
-
-function scrambleOrder(arr: string[]) {
-  const scrambledArr = [];
-
-  // Array of indices representing the original order
-  const indices = Array.from(Array(arr.length).keys());
-
-  // Shuffle the indices
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-
-  // Rearrange the elements based on the shuffled indices
-  for (const i of indices) {
-    scrambledArr.push(arr[indices[i]]);
-  }
-
-  return scrambledArr;
-}
+type FormStepProps = {
+  index: number;
+  total: number;
+  question: string;
+  options: string[];
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onPrev: () => void;
+  onNext: () => void;
+  goToFirst: () => void;
+  goToLast: () => void;
+  selectedAnswer?: string;
+  isLast: boolean;
+};
 
 export function Question({
-  questionContent,
   index,
-}: {
-  questionContent: string;
-  index: number;
-}) {
-  const questionNumber = formatQuestionNumber(index);
-  const [question, ...options] = getQuestionData(questionContent);
-  // const correctAnswer = options[0]; // First option is always the correct answer
+  total,
+  question,
+  options,
+  onChange,
+  onPrev,
+  onNext,
+  goToFirst,
+  goToLast,
+  selectedAnswer,
+  isLast,
+}: FormStepProps) {
+  const questionNumber = index + 1;
+  const isFirst = index <= 0;
 
-  // List options in scrambled order
-  const scrambledOptions = scrambleOrder(options);
+  const nextButtonText = isLast ? "submit" : ">";
 
   return (
     <div>
-      <p>
-        {questionNumber}
-        {question}
-      </p>
-      {scrambledOptions.map((option, optionIndex) => (
-        <div key={optionIndex}>
-          <label>
-            <input
-              type="radio"
-              key={optionIndex}
-              name={`question_${index.toString()}`}
-              value={option}
-            />
-            {option}
-          </label>
-        </div>
-      ))}
+      <div>
+        {questionNumber} / {total}
+      </div>
+      <fieldset>
+        <legend>{question}</legend>
+        {options.map((option, optionIndex) => (
+          <div key={optionIndex}>
+            <label>
+              <input
+                key={optionIndex}
+                type="radio"
+                name={`question_${index.toString()}`}
+                value={option}
+                onChange={onChange}
+                defaultChecked={option === selectedAnswer}
+              />
+              {option}
+            </label>
+          </div>
+        ))}
+      </fieldset>
+      <div>
+        <button
+          type="button"
+          id="goToFirstButton"
+          onClick={goToFirst}
+          disabled={isFirst}
+        >
+          &lt;&lt;
+        </button>
+        <button
+          type="button"
+          id="prevButton"
+          onClick={onPrev}
+          disabled={isFirst}
+        >
+          &lt;
+        </button>
+        <button
+          type="submit"
+          id="nextButton"
+          onClick={() => {
+            onNext();
+          }}
+        >
+          {nextButtonText}
+        </button>
+        <button
+          type="button"
+          id="goToLastButton"
+          onClick={goToLast}
+          disabled={isLast}
+        >
+          &gt;&gt;
+        </button>
+      </div>
     </div>
   );
 }
