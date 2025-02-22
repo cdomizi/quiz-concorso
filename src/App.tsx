@@ -1,11 +1,16 @@
 import "@/App.css";
 import { Quiz } from "@components/Quiz";
+import { Home } from "./components/Home";
+import { QuizProvider } from "./contexts/QuizContext";
 
 function App() {
   return (
-    <main>
-      <Quiz />
-    </main>
+    <QuizProvider>
+      <main>
+        <Home />
+        <Quiz />
+      </main>
+    </QuizProvider>
   );
 }
 

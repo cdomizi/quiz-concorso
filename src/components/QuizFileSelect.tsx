@@ -1,3 +1,6 @@
+import QuizContext from "@/contexts/QuizContext";
+import { useContext } from "react";
+
 const FILE_LIST = [
   "Domande_2575_v81.pdf",
   "Domande_2575_v82.pdf",
@@ -26,28 +29,25 @@ function getOptionInfo(filePath: string) {
 
 const quizSelectOptions = FILE_LIST.map((filePath) => getOptionInfo(filePath));
 
-export function QuizFileSelect({
-  onSelect,
-}: {
-  onSelect: (filePath: string) => void;
-}) {
+export function QuizFileSelect() {
+  const { filePath, setFilePath } = useContext(QuizContext);
+
   function handleFileSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedFilePath = event.target.value;
 
-    onSelect(selectedFilePath); // Set state in parent component
+    setFilePath(selectedFilePath); // Set state in parent component
   }
 
   return (
     <>
       <label htmlFor="file-select">Seleziona il quiz: </label>
-
       <select
         onChange={handleFileSelect}
-        defaultValue={undefined}
+        defaultValue={filePath}
         name="quizzes"
         id="file-select"
       >
-        {" "}
+        {<option value={undefined}></option>}
         {quizSelectOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.name}

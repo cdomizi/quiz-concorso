@@ -1,5 +1,6 @@
 import { getQuizData } from "@/components/QuizUtils";
-import { useEffect, useState } from "react";
+import QuizContext from "@/contexts/QuizContext";
+import { useContext, useEffect, useState } from "react";
 
 type TQuestion = {
   index: number;
@@ -40,39 +41,43 @@ function scrambleOrder(arr: string[]) {
   return scrambledArr;
 }
 
-export function useQuiz(filePath: string) {
+export function useQuiz() {
+  const { filePath } = useContext(QuizContext);
+
   const [questions, setQuestions] = useState<TQuestion[]>();
   const [step, setStep] = useState<number>(0);
 
   useEffect(() => {
     const setQuizData = async () => {
-      try {
-        const quizData = await getQuizData(filePath);
+      if (filePath) {
+        try {
+          const quizData = await getQuizData(filePath);
 
-        const questionsData = quizData?.questions;
+          const questionsData = quizData?.questions;
 
-        const allQuestions = questionsData?.map((questionContent, i) => {
-          const index = formatQuestionIndex(i);
-          const [question, ...options] = getQuestionData(questionContent);
+          const allQuestions = questionsData?.map((questionContent, i) => {
+            const index = formatQuestionIndex(i);
+            const [question, ...options] = getQuestionData(questionContent);
 
-          const answer = options[0]; // First option is always the correct answer
+            const answer = options[0]; // First option is always the correct answer
 
-          // List options in scrambled order
-          const scrambledOptions = scrambleOrder(options);
+            // List options in scrambled order
+            const scrambledOptions = scrambleOrder(options);
 
-          const currentQuestion: TQuestion = {
-            index,
-            question,
-            options: scrambledOptions,
-            answer,
-          };
+            const currentQuestion: TQuestion = {
+              index,
+              question,
+              options: scrambledOptions,
+              answer,
+            };
 
-          return currentQuestion;
-        });
+            return currentQuestion;
+          });
 
-        setQuestions(allQuestions);
-      } catch (error) {
-        console.error("Error extracting PDF text:", error);
+          setQuestions(allQuestions);
+        } catch (error) {
+          console.error("Error extracting PDF text:", error);
+        }
       }
     };
 
