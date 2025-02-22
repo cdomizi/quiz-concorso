@@ -1,4 +1,4 @@
-import { useQuiz } from "@/hooks/useQuiz";
+import { useQuiz } from "@hooks/useQuiz";
 import { useState } from "react";
 import { FormStep } from "./FormStep";
 

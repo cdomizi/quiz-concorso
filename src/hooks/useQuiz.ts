@@ -80,5 +80,5 @@ export function useQuiz() {
     void setQuizData();
   }, []);
 
-  return { questions };
+  return { questions, setQuestions };
 }

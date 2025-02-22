@@ -1,25 +1,5 @@
 import { useState } from "react";
 
-function scrambleOrder(arr: string[]) {
-  const scrambledArr = [];
-
-  // Array of indices representing the original order
-  const indices = Array.from(Array(arr.length).keys());
-
-  // Shuffle the indices
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-
-  // Rearrange the elements based on the shuffled indices
-  for (const i of indices) {
-    scrambledArr.push(arr[indices[i]]);
-  }
-
-  return scrambledArr;
-}
-
 type FormStepProps = {
   index: number;
   total: number;
@@ -46,9 +26,6 @@ export function FormStep({
   const questionNumber = index + 1;
   const isFirst = index <= 0;
 
-  // List options in scrambled order
-  const scrambledOptions = scrambleOrder(options);
-
   const nextButtonText = isLast ? "submit" : ">";
 
   const [answer, setAnswer] = useState<string | undefined>();
@@ -65,7 +42,7 @@ export function FormStep({
       </div>
       <fieldset>
         <legend>{question} question text</legend>
-        {scrambledOptions.map((option, optionIndex) => (
+        {options.map((option, optionIndex) => (
           <div key={optionIndex}>
             <label>
               <input
