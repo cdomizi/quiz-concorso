@@ -1,7 +1,7 @@
 import QuizContext from "@/contexts/QuizContext";
 import { useContext } from "react";
 
-const FILE_LIST = [
+const QUIZ_FILES = [
   "Domande_2575_v81.pdf",
   "Domande_2575_v82.pdf",
   "Domande_2575_v83.pdf",
@@ -27,7 +27,7 @@ function getOptionInfo(filePath: string) {
   };
 }
 
-const quizSelectOptions = FILE_LIST.map((filePath) => getOptionInfo(filePath));
+const quizSelectOptions = QUIZ_FILES.map((filePath) => getOptionInfo(filePath));
 
 export function QuizFileSelect() {
   const { filePath, setFilePath } = useContext(QuizContext);

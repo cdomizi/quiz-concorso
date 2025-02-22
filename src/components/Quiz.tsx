@@ -10,7 +10,7 @@ export function Quiz() {
     handleNext,
     handleChange,
     goTo,
-  } = useQuiz("./Domande_2575_v81.pdf");
+  } = useQuiz();
 
   return (
     <div>

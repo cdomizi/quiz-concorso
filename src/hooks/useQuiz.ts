@@ -44,6 +44,7 @@ function scrambleOrder(arr: string[]) {
 export function useQuiz() {
   const { filePath } = useContext(QuizContext);
 
+  const [quizTitle, setQuizTitle] = useState<string>();
   const [questions, setQuestions] = useState<TQuestion[]>();
   const [step, setStep] = useState<number>(0);
 
@@ -53,7 +54,8 @@ export function useQuiz() {
         try {
           const quizData = await getQuizData(filePath);
 
-          const questionsData = quizData?.questions;
+          setQuizTitle(quizData?.quizTitle); // Set quiz title
+          const questionsData = quizData?.questions; // Set Questions
 
           const allQuestions = questionsData?.map((questionContent, i) => {
             const index = formatQuestionIndex(i);
@@ -119,6 +121,7 @@ export function useQuiz() {
   }
 
   return {
+    quizTitle,
     questions,
     step,
     isLast,
