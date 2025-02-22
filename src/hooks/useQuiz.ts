@@ -6,7 +6,7 @@ type TQuestion = {
   question: string;
   options: string[];
   answer: string;
-  givenAnswer?: string;
+  selectedAnswer?: string;
 };
 
 function formatQuestionIndex(index: number) {

@@ -1,14 +1,14 @@
-import { useState } from "react";
-
 type FormStepProps = {
   index: number;
   total: number;
   question: string;
   options: string[];
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   onPrev: () => void;
-  onNext: (answer?: string) => void;
+  onNext: () => void;
   goToFirst: () => void;
   goToLast: () => void;
+  selectedAnswer?: string;
   isLast: boolean;
 };
 
@@ -17,23 +17,18 @@ export function FormStep({
   total,
   question,
   options,
+  onChange,
   onPrev,
   onNext,
   goToFirst,
   goToLast,
+  selectedAnswer,
   isLast,
 }: FormStepProps) {
   const questionNumber = index + 1;
   const isFirst = index <= 0;
 
   const nextButtonText = isLast ? "submit" : ">";
-
-  const [answer, setAnswer] = useState<string | undefined>();
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setAnswer(event.target.value);
-    console.log({ prevAnswer: answer, newAnswer: event.target.value });
-  };
 
   return (
     <div>
@@ -50,7 +45,8 @@ export function FormStep({
                 type="radio"
                 name={`question_${index.toString()}`}
                 value={option}
-                onChange={handleChange}
+                onChange={onChange}
+                defaultChecked={option === selectedAnswer}
               />
               {option}
             </label>
@@ -78,7 +74,7 @@ export function FormStep({
           type="submit"
           id="nextButton"
           onClick={() => {
-            onNext(answer);
+            onNext();
           }}
         >
           {nextButtonText}
