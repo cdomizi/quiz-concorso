@@ -40,7 +40,7 @@ export function Question({
 }) {
   const questionNumber = formatQuestionNumber(index);
   const [question, ...options] = getQuestionData(questionContent);
-  // const correctAnswer = options[1]; // First option is always the correct answer
+  // const correctAnswer = options[0]; // First option is always the correct answer
 
   // List options in scrambled order
   const scrambledOptions = scrambleOrder(options);

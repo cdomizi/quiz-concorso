@@ -1,18 +1,34 @@
+import { useState } from "react";
 import { FormStep } from "./FormStep";
 
 export function Form() {
-  // const questions = Array.from(Array(50).keys());
   const questions = Array.from(Array(5).keys());
+  const [step, setStep] = useState<number>(0);
+
+  const isLast = step === questions.length - 1;
+
+  function handlePrev() {
+    setStep((currentStep) => currentStep - 1);
+  }
+
+  function handleSubmit(answer?: string) {
+    console.log(answer);
+
+    if (!isLast) setStep((currentStep) => currentStep + 1);
+  }
+
   return (
     <div>
-      {questions.map((question, index) => (
+      {
         <FormStep
-          key={index}
-          index={index}
+          index={questions[step]}
           total={questions.length}
-          question={question.toString()}
+          question={questions[step].toString()}
+          onPrev={handlePrev}
+          onSubmit={handleSubmit}
+          isLast={isLast}
         />
-      ))}
+      }
     </div>
   );
 }
