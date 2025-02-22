@@ -11,10 +11,14 @@ export function Form() {
     setStep((currentStep) => currentStep - 1);
   }
 
-  function handleSubmit(answer?: string) {
+  function handleNext(answer?: string) {
     console.log(answer);
 
     if (!isLast) setStep((currentStep) => currentStep + 1);
+  }
+
+  function goTo(index: number) {
+    setStep(index);
   }
 
   return (
@@ -25,7 +29,13 @@ export function Form() {
           total={questions.length}
           question={questions[step].toString()}
           onPrev={handlePrev}
-          onSubmit={handleSubmit}
+          onNext={handleNext}
+          goToFirst={() => {
+            goTo(0);
+          }}
+          goToLast={() => {
+            goTo(questions.length - 1);
+          }}
           isLast={isLast}
         />
       }

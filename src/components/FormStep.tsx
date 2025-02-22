@@ -25,14 +25,18 @@ export function FormStep({
   total,
   question,
   onPrev,
-  onSubmit,
+  onNext,
+  goToFirst,
+  goToLast,
   isLast,
 }: {
   index: number;
   total: number;
   question: string;
   onPrev: () => void;
-  onSubmit: (answer?: string) => void;
+  onNext: (answer?: string) => void;
+  goToFirst: () => void;
+  goToLast: () => void;
   isLast: boolean;
 }) {
   const questionNumber = index + 1;
@@ -43,7 +47,7 @@ export function FormStep({
   // List options in scrambled order
   const scrambledOptions = scrambleOrder(options);
 
-  const nextButtonText = isLast ? "submit" : "next";
+  const nextButtonText = isLast ? "submit" : ">";
 
   const [answer, setAnswer] = useState<string | undefined>();
 
@@ -77,20 +81,36 @@ export function FormStep({
       <div>
         <button
           type="button"
+          id="goToFirstButton"
+          onClick={goToFirst}
+          disabled={isFirst}
+        >
+          &lt;&lt;
+        </button>
+        <button
+          type="button"
           id="prevButton"
           onClick={onPrev}
           disabled={isFirst}
         >
-          prev
+          &lt;
         </button>
         <button
           type="submit"
           id="nextButton"
           onClick={() => {
-            onSubmit(answer);
+            onNext(answer);
           }}
         >
           {nextButtonText}
+        </button>
+        <button
+          type="button"
+          id="goToLastButton"
+          onClick={goToLast}
+          disabled={isLast}
+        >
+          &gt;&gt;
         </button>
       </div>
     </div>
