@@ -68,3 +68,8 @@ export async function getQuizData(filePath: string) {
     console.error("Error extracting PDF text:", error);
   }
 }
+
+export function formatQuestionIndex(index: number) {
+  // Transform 0-based into 1-based index
+  return index + 1;
+}

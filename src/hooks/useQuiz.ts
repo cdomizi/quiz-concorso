@@ -1,5 +1,5 @@
-import { getQuizData } from "@/components/QuizUtils";
-import QuizContext from "@/contexts/QuizContext";
+import { getQuizData } from "@components/QuizUtils";
+import QuizContext from "@contexts/QuizContext";
 import { useContext, useEffect, useState } from "react";
 
 type TQuestion = {
@@ -9,11 +9,6 @@ type TQuestion = {
   answer: string;
   selectedAnswer?: string;
 };
-
-function formatQuestionIndex(index: number) {
-  // Transform 0-based into 1-based index
-  return index++;
-}
 
 function getQuestionData(questionContent: string) {
   const optionRegex = new RegExp(/\s?\[[abcd]\]\s?/);
@@ -57,8 +52,7 @@ export function useQuiz() {
           setQuizTitle(quizData?.quizTitle); // Set quiz title
           const questionsData = quizData?.questions; // Set Questions
 
-          const allQuestions = questionsData?.map((questionContent, i) => {
-            const index = formatQuestionIndex(i);
+          const allQuestions = questionsData?.map((questionContent, index) => {
             const [question, ...options] = getQuestionData(questionContent);
 
             const answer = options[0]; // First option is always the correct answer

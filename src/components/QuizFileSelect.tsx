@@ -1,4 +1,4 @@
-import QuizContext from "@/contexts/QuizContext";
+import QuizContext from "@contexts/QuizContext";
 import { useContext } from "react";
 
 const QUIZ_FILES = [
