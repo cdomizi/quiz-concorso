@@ -20,29 +20,31 @@ function scrambleOrder(arr: string[]) {
   return scrambledArr;
 }
 
-export function FormStep({
-  index,
-  total,
-  question,
-  onPrev,
-  onNext,
-  goToFirst,
-  goToLast,
-  isLast,
-}: {
+type FormStepProps = {
   index: number;
   total: number;
   question: string;
+  options: string[];
   onPrev: () => void;
   onNext: (answer?: string) => void;
   goToFirst: () => void;
   goToLast: () => void;
   isLast: boolean;
-}) {
+};
+
+export function FormStep({
+  index,
+  total,
+  question,
+  options,
+  onPrev,
+  onNext,
+  goToFirst,
+  goToLast,
+  isLast,
+}: FormStepProps) {
   const questionNumber = index + 1;
   const isFirst = index <= 0;
-  const options = ["1", "2", "3", "4"];
-  // const correctAnswer = options[0]; // First option is always the correct answer
 
   // List options in scrambled order
   const scrambledOptions = scrambleOrder(options);

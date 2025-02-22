@@ -1,11 +1,12 @@
+import { useQuiz } from "@/hooks/useQuiz";
 import { useState } from "react";
 import { FormStep } from "./FormStep";
 
 export function Form() {
-  const questions = Array.from(Array(5).keys());
+  const { questions } = useQuiz();
   const [step, setStep] = useState<number>(0);
 
-  const isLast = step === questions.length - 1;
+  const isLast = !!questions?.length && step === questions.length - 1;
 
   function handlePrev() {
     setStep((currentStep) => currentStep - 1);
@@ -23,22 +24,24 @@ export function Form() {
 
   return (
     <div>
-      {
+      {questions && (
         <FormStep
-          index={questions[step]}
+          key={questions[step].index}
+          index={questions[step].index}
           total={questions.length}
-          question={questions[step].toString()}
+          question={questions[step].question}
+          options={questions[step].options}
           onPrev={handlePrev}
           onNext={handleNext}
           goToFirst={() => {
             goTo(0);
           }}
           goToLast={() => {
-            goTo(questions.length - 1);
+            if (questions.length) goTo(questions.length - 1);
           }}
           isLast={isLast}
         />
-      }
+      )}
     </div>
   );
 }
