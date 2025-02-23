@@ -8,7 +8,16 @@ import ReactDOM from "react-dom/client";
 import { routeTree } from "./routeTree.gen";
 
 // Create a new router instance
-export const router = createRouter({ routeTree, basepath: "/quiz-concorso/" });
+export const router = createRouter({
+  routeTree,
+  basepath: "/quiz-concorso/",
+  context: {
+    filePath: undefined,
+    setFilePath: () => {
+      return;
+    },
+  },
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {

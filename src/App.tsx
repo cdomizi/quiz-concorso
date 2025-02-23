@@ -1,15 +1,17 @@
 import "@/App.css";
 import { router } from "@/main";
+import QuizContext from "@contexts/QuizContext";
 import { RouterProvider } from "@tanstack/react-router";
-import { QuizProvider } from "./contexts/QuizContext";
+import { useQuizContext } from "./hooks/useQuizContext";
 
 function App() {
+  const { filePath, setFilePath } = useQuizContext();
   return (
-    <QuizProvider>
+    <QuizContext.Provider value={{ filePath, setFilePath }}>
       <main>
         <RouterProvider router={router} />
       </main>
-    </QuizProvider>
+    </QuizContext.Provider>
   );
 }
 

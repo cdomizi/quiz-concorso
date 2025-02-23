@@ -1,12 +1,16 @@
 import { ButtonLink } from "@components/ButtonLink";
 import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
 import { useQuiz } from "@hooks/useQuiz";
+import { useNavigate } from "@tanstack/react-router";
 
 export function Dashboard() {
+  const navigate = useNavigate();
+
   const { quizTitle, questions, goTo } = useQuiz();
 
-  function handleOnClick(index: number) {
+  async function handleOnClick(index: number) {
     goTo(index);
+    await navigate({ to: "/quiz" });
   }
 
   return (

@@ -1,4 +1,3 @@
-import { ButtonLink } from "@components/ButtonLink";
 import { formatQuestionIndex } from "@utils/QuizUtils";
 
 export function DashboardQuestion({
@@ -8,20 +7,17 @@ export function DashboardQuestion({
 }: {
   index: number;
   answered: boolean;
-  onClick: (index: number) => void;
+  onClick: (index: number) => Promise<void>;
 }) {
   const questionIndex = formatQuestionIndex(index);
 
   return (
-    <ButtonLink
+    <button
       className={`dashboard-question-button ${answered ? "answered" : ""}`}
       type="button"
-      to="/quiz"
-      onClick={() => {
-        onClick(index);
-      }}
+      onClick={() => void onClick(index)}
     >
       {questionIndex.toString()}
-    </ButtonLink>
+    </button>
   );
 }

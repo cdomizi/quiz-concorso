@@ -1,11 +1,11 @@
+import { ButtonLink } from "@components/ButtonLink";
 import { QuizFileSelect } from "@components/Home/QuizFileSelect";
-import { Link } from "@tanstack/react-router";
 
 export function Home() {
   return (
     <div>
       <QuizFileSelect />
-      <Link to="/dashboard">Vai al quiz</Link>
+      <ButtonLink to="/dashboard">Vai al quiz</ButtonLink>
     </div>
   );
 }

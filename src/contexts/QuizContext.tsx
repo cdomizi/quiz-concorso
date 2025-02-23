@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext } from "react";
 
 export type TQuizContext = {
   filePath: string | undefined;
@@ -6,17 +6,5 @@ export type TQuizContext = {
 };
 
 const QuizContext = createContext({} as TQuizContext);
-
-export function QuizProvider({ children }: { children: ReactNode }) {
-  const [quizFilePath, setQuizFilePath] = useState<string | undefined>();
-
-  return (
-    <QuizContext
-      value={{ filePath: quizFilePath, setFilePath: setQuizFilePath }}
-    >
-      {children}
-    </QuizContext>
-  );
-}
 
 export default QuizContext;

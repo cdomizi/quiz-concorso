@@ -3,9 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "node:path";
 import { defineConfig } from "vite";
 
+const BASE_URL = "/quiz-concorso/";
+
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/quiz-concorso/",
+  base: BASE_URL,
   plugins: [TanStackRouterVite({ autoCodeSplitting: true }), react()],
   resolve: {
     alias: {
