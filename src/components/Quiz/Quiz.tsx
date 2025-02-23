@@ -1,5 +1,5 @@
+import { Question } from "@components/Quiz/Question";
 import { useQuiz } from "@hooks/useQuiz";
-import { Question } from "./Question";
 
 export function Quiz() {
   const {

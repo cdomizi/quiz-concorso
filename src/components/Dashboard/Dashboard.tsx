@@ -1,5 +1,5 @@
 import { ButtonLink } from "@components/ButtonLink";
-import { DashboardQuestion } from "@components/DashboardQuestion";
+import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
 import { useQuiz } from "@hooks/useQuiz";
 
 export function Dashboard() {

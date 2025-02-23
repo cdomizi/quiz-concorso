@@ -1,10 +1,11 @@
-import { Link, NotFoundRouteComponent } from "@tanstack/react-router";
+import { NotFoundRouteComponent } from "@tanstack/react-router";
+import { ButtonLink } from "./ButtonLink";
 
 export const NotFound: NotFoundRouteComponent = () => {
   return (
     <div>
       <h1>Pagina non trovata</h1>
-      <Link to="/home">Torna alla home</Link>
+      <ButtonLink to="/home">Torna alla home</ButtonLink>
     </div>
   );
 };

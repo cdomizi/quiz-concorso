@@ -1,4 +1,4 @@
-import { ButtonLink } from "./ButtonLink";
+import { ButtonLink } from "@components/ButtonLink";
 
 type FormStepProps = {
   index: number;

@@ -1,5 +1,5 @@
-import { ButtonLink } from "./ButtonLink";
-import { formatQuestionIndex } from "./QuizUtils";
+import { ButtonLink } from "@components/ButtonLink";
+import { formatQuestionIndex } from "@utils/QuizUtils";
 
 export function DashboardQuestion({
   index,

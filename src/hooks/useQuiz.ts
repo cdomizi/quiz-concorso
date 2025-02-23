@@ -1,5 +1,5 @@
-import { getQuizData } from "@components/QuizUtils";
 import QuizContext from "@contexts/QuizContext";
+import { getQuizData } from "@utils/QuizUtils";
 import { useContext, useEffect, useState } from "react";
 
 type TQuestion = {

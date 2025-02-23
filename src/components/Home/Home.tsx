@@ -1,5 +1,5 @@
+import { QuizFileSelect } from "@components/Home/QuizFileSelect";
 import { Link } from "@tanstack/react-router";
-import { QuizFileSelect } from "./QuizFileSelect";
 
 export function Home() {
   return (
