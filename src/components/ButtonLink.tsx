@@ -1,25 +1,13 @@
 import { createLink, LinkComponent } from "@tanstack/react-router";
-import { ButtonHTMLAttributes, HTMLAttributes, Ref } from "react";
+import { ButtonHTMLAttributes, Ref } from "react";
 
 type BasicLinkProps = {
-  // Add any additional props you want to pass to the anchor element
-  className: Pick<HTMLAttributes<HTMLButtonElement>, "className">;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
-
-const BasicLinkComponent = ({
-  ref,
-  children,
-  ...props
-}: {
   ref: Ref<HTMLButtonElement>;
   children?: string;
-  props?: BasicLinkProps;
-}) => {
-  return (
-    <button ref={ref} {...props}>
-      {children}
-    </button>
-  );
+} & ButtonHTMLAttributes<HTMLButtonElement>;
+
+const BasicLinkComponent = (props: BasicLinkProps) => {
+  return <button {...props}>{props.children}</button>;
 };
 
 const CreatedLinkComponent = createLink(BasicLinkComponent);

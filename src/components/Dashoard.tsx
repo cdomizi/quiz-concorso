@@ -1,3 +1,4 @@
+import { ButtonLink } from "@components/ButtonLink";
 import { DashboardQuestion } from "@components/DashboardQuestion";
 import { useQuiz } from "@hooks/useQuiz";
 
@@ -15,6 +16,7 @@ export function Dashboard() {
         Concorso ordinario 2023 - Scuola secondaria di primo e secondo grado
       </p>
       <p>Classe di concorso 2575</p>
+      <ButtonLink to="/quiz">Inizia</ButtonLink>
       <div>
         {questions?.map((question) => (
           <DashboardQuestion

@@ -1,3 +1,5 @@
+import { ButtonLink } from "./ButtonLink";
+
 type FormStepProps = {
   index: number;
   total: number;
@@ -54,6 +56,7 @@ export function Question({
         ))}
       </fieldset>
       <div>
+        <ButtonLink to="/dashboard">Pagina principale</ButtonLink>
         <button
           type="button"
           id="goToFirstButton"
