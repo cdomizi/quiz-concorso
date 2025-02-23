@@ -1,14 +1,15 @@
 import "@/App.css";
+import { router } from "@/main";
 import { Quiz } from "@components/Quiz";
+import { RouterProvider } from "@tanstack/react-router";
 import { Dashboard } from "./components/Dashoard";
-import { Home } from "./components/Home";
 import { QuizProvider } from "./contexts/QuizContext";
 
 function App() {
   return (
     <QuizProvider>
+      <RouterProvider router={router} />
       <main>
-        <Home />
         <Dashboard />
         <Quiz />
       </main>
