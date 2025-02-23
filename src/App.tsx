@@ -9,7 +9,7 @@ function App() {
   return (
     <QuizContext.Provider value={{ filePath, setFilePath }}>
       <main>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} context={{ filePath, setFilePath }} />
       </main>
     </QuizContext.Provider>
   );
