@@ -1,6 +1,7 @@
 import QuizContext from "@contexts/QuizContext";
 import { getQuizData } from "@utils/QuizUtils";
 import { useContext, useEffect, useState } from "react";
+import { QUIZ_ACTIONS } from "./useQuizContext";
 
 type TQuestion = {
   index: number;
@@ -37,9 +38,11 @@ function scrambleOrder(arr: string[]) {
 }
 
 export function useQuiz() {
-  const { filePath } = useContext(QuizContext);
+  const {
+    quizState: { filePath, title },
+    dispatch,
+  } = useContext(QuizContext);
 
-  const [quizTitle, setQuizTitle] = useState<string>();
   const [questions, setQuestions] = useState<TQuestion[]>();
   const [step, setStep] = useState<number>(0);
 
@@ -49,7 +52,11 @@ export function useQuiz() {
         try {
           const quizData = await getQuizData(filePath);
 
-          setQuizTitle(quizData?.quizTitle); // Set quiz title
+          // Set quiz title
+          dispatch({
+            type: QUIZ_ACTIONS.setTitle,
+            payload: quizData?.quizTitle,
+          });
           const questionsData = quizData?.questions; // Set Questions
 
           const allQuestions = questionsData?.map((questionContent, index) => {
@@ -78,7 +85,7 @@ export function useQuiz() {
     };
 
     void setQuizData();
-  }, [filePath]);
+  }, [dispatch, filePath]);
 
   const isLast = !!questions?.length && step === questions.length - 1;
 
@@ -115,7 +122,7 @@ export function useQuiz() {
   }
 
   return {
-    quizTitle,
+    quizTitle: title,
     questions,
     step,
     isLast,

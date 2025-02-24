@@ -1,8 +1,9 @@
+import { TQuiz, TQuizAction } from "@hooks/useQuizContext";
 import { createContext } from "react";
 
 export type TQuizContext = {
-  filePath: string | undefined;
-  setFilePath: React.Dispatch<React.SetStateAction<string | undefined>>;
+  quizState: TQuiz;
+  dispatch: React.ActionDispatch<[action: TQuizAction]>;
 };
 
 const QuizContext = createContext({} as TQuizContext);

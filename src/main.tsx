@@ -12,10 +12,8 @@ export const router = createRouter({
   routeTree,
   basepath: "/quiz-concorso/",
   context: {
-    filePath: undefined,
-    setFilePath: () => {
-      return;
-    },
+    quizState: undefined!,
+    dispatch: undefined!,
   },
 });
 

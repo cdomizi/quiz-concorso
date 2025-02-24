@@ -1,3 +1,4 @@
+import { QUIZ_ACTIONS } from "@/hooks/useQuizContext";
 import QuizContext from "@contexts/QuizContext";
 import { useContext } from "react";
 
@@ -30,12 +31,15 @@ function getOptionInfo(filePath: string) {
 const quizSelectOptions = QUIZ_FILES.map((filePath) => getOptionInfo(filePath));
 
 export function QuizFileSelect() {
-  const { filePath, setFilePath } = useContext(QuizContext);
+  const {
+    quizState: { filePath },
+    dispatch,
+  } = useContext(QuizContext);
 
   function handleFileSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedFilePath = event.target.value;
 
-    setFilePath(selectedFilePath); // Set state in parent component
+    dispatch({ type: QUIZ_ACTIONS.setFilePath, payload: selectedFilePath }); // Set state in parent component
   }
 
   return (
