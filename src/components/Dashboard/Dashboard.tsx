@@ -1,7 +1,5 @@
-import { useQuizContext } from "@/hooks/useQuizContext";
-import { ButtonLink } from "@components/ButtonLink";
+import { QUIZ_ACTIONS, useQuizContext } from "@/hooks/useQuizContext";
 import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
-import { useQuiz } from "@hooks/useQuiz";
 import { useNavigate } from "@tanstack/react-router";
 
 export function Dashboard() {
@@ -9,11 +7,11 @@ export function Dashboard() {
 
   const {
     quizState: { title, questions },
+    dispatch,
   } = useQuizContext();
-  const { goTo } = useQuiz();
 
   async function handleOnClick(index: number) {
-    goTo(index);
+    dispatch({ type: QUIZ_ACTIONS.setStep, payload: index });
     await navigate({ to: "/quiz" });
   }
 
@@ -24,7 +22,14 @@ export function Dashboard() {
         Concorso ordinario 2023 - Scuola secondaria di primo e secondo grado
       </p>
       <p>Classe di concorso 2575</p>
-      <ButtonLink to="/quiz">Inizia</ButtonLink>
+      <button
+        type="button"
+        onClick={() => {
+          void handleOnClick(0);
+        }}
+      >
+        Inizia
+      </button>
       <div>
         {questions?.map((question) => (
           <DashboardQuestion
