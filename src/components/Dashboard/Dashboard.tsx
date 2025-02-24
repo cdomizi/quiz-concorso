@@ -57,7 +57,6 @@ export function Dashboard() {
           <DashboardQuestion
             key={question.index}
             index={question.index}
-            answered={!!question.selectedAnswer}
             onClick={handleOnClick}
           />
         ))}

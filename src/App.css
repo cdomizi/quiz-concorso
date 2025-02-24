@@ -2,11 +2,14 @@ main {
   max-width: 900px;
 }
 
-.dashboard-question-button.answered {
-  background-color: lightblue;
+.dashboard-question-button {
+  &.answered {
+    background-color: lightblue;
+  }
 }
 
-label {
+label,
+.dashboard-question-button {
   &.correct {
     border: 1px solid green;
     background-color: rgba(0, 128, 0, 0.2);
