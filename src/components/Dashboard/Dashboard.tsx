@@ -1,3 +1,4 @@
+import { useQuizContext } from "@/hooks/useQuizContext";
 import { ButtonLink } from "@components/ButtonLink";
 import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
 import { useQuiz } from "@hooks/useQuiz";
@@ -6,7 +7,10 @@ import { useNavigate } from "@tanstack/react-router";
 export function Dashboard() {
   const navigate = useNavigate();
 
-  const { quizTitle, questions, goTo } = useQuiz();
+  const {
+    quizState: { title, questions },
+  } = useQuizContext();
+  const { goTo } = useQuiz();
 
   async function handleOnClick(index: number) {
     goTo(index);
@@ -15,7 +19,7 @@ export function Dashboard() {
 
   return (
     <div>
-      <h1>{quizTitle}</h1>
+      <h1>{title}</h1>
       <p>
         Concorso ordinario 2023 - Scuola secondaria di primo e secondo grado
       </p>

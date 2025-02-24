@@ -1,15 +1,7 @@
 import QuizContext from "@contexts/QuizContext";
-import { QUIZ_ACTIONS } from "@hooks/useQuizContext";
+import { QUIZ_ACTIONS, TQuestion } from "@hooks/useQuizContext";
 import { getQuizData } from "@utils/QuizUtils";
-import { useContext, useEffect, useState } from "react";
-
-type TQuestion = {
-  index: number;
-  question: string;
-  options: string[];
-  answer: string;
-  selectedAnswer?: string;
-};
+import { useContext, useEffect } from "react";
 
 function getQuestionData(questionContent: string) {
   const optionRegex = new RegExp(/\s?\[[abcd]\]\s?/);
@@ -39,12 +31,9 @@ function scrambleOrder(arr: string[]) {
 
 export function useQuiz() {
   const {
-    quizState: { filePath, title },
+    quizState: { filePath, title, questions, step = 0 },
     dispatch,
   } = useContext(QuizContext);
-
-  const [questions, setQuestions] = useState<TQuestion[]>();
-  const [step, setStep] = useState<number>(0);
 
   useEffect(() => {
     const setQuizData = async () => {
@@ -77,7 +66,7 @@ export function useQuiz() {
             return currentQuestion;
           });
 
-          setQuestions(allQuestions);
+          dispatch({ type: QUIZ_ACTIONS.setQuestions, payload: allQuestions });
         } catch (error) {
           console.error("Error extracting PDF text:", error);
         }
@@ -90,25 +79,19 @@ export function useQuiz() {
   const isLast = !!questions?.length && step === questions.length - 1;
 
   function handlePrev() {
-    if (step > 0) setStep((currentStep) => currentStep - 1);
+    if (step > 0) dispatch({ type: QUIZ_ACTIONS.setStep, payload: step - 1 });
   }
 
   function handleNext() {
-    if (!isLast) setStep((currentStep) => currentStep + 1);
+    if (!isLast) dispatch({ type: QUIZ_ACTIONS.setStep, payload: step + 1 });
   }
 
   function setAnswer(selectedAnswer: string) {
     if (questions?.length) {
-      setQuestions((currentQuestions) => {
-        const answeredQuestion = { ...questions[step], selectedAnswer };
-        const newQuestions = currentQuestions?.toSpliced(
-          step,
-          1,
-          answeredQuestion
-        );
+      const answeredQuestion = { ...questions[step], selectedAnswer };
+      const newQuestions = questions.toSpliced(step, 1, answeredQuestion);
 
-        return newQuestions;
-      });
+      dispatch({ type: QUIZ_ACTIONS.setQuestions, payload: newQuestions });
     }
   }
 
@@ -118,11 +101,11 @@ export function useQuiz() {
   };
 
   function goTo(index: number) {
-    setStep(index);
+    dispatch({ type: QUIZ_ACTIONS.setStep, payload: index });
   }
 
   return {
-    quizTitle: title,
+    title,
     questions,
     step,
     isLast,

@@ -30,8 +30,6 @@ export function Question({
   const questionNumber = index + 1;
   const isFirst = index <= 0;
 
-  const nextButtonText = isLast ? "submit" : ">";
-
   return (
     <div>
       <div>
@@ -60,33 +58,34 @@ export function Question({
         <button
           type="button"
           id="goToFirstButton"
-          onClick={goToFirst}
           disabled={isFirst}
+          onClick={goToFirst}
         >
           &lt;&lt;
         </button>
         <button
           type="button"
           id="prevButton"
-          onClick={onPrev}
           disabled={isFirst}
+          onClick={onPrev}
         >
           &lt;
         </button>
         <button
           type="submit"
           id="nextButton"
+          disabled={isLast}
           onClick={() => {
             onNext();
           }}
         >
-          {nextButtonText}
+          &gt;
         </button>
         <button
           type="button"
           id="goToLastButton"
-          onClick={goToLast}
           disabled={isLast}
+          onClick={goToLast}
         >
           &gt;&gt;
         </button>
