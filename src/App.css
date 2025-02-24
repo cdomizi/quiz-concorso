@@ -8,6 +8,15 @@ main {
   }
 }
 
+h2 {
+  &.success {
+    color: green;
+  }
+  &.wrong {
+    color: red;
+  }
+}
+
 label,
 .dashboard-question-button {
   &.correct {
