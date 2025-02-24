@@ -1,3 +1,4 @@
+import { getQuestionData, getQuizData, scrambleOrder } from "@/utils/QuizUtils";
 import { useEffect, useReducer } from "react";
 import { useQuizCache } from "./useQuizCache";
 
@@ -18,7 +19,7 @@ export type TQuiz = {
 
 export type TQuizAction = {
   type: keyof typeof QUIZ_ACTIONS;
-  payload: unknown;
+  payload?: unknown;
 };
 
 const initialState: TQuiz = {
@@ -31,6 +32,7 @@ export const QUIZ_ACTIONS = {
   setTitle: "setTitle",
   setQuestions: "setQuestions",
   setStep: "setStep",
+  eraseState: "eraseState",
 } as const;
 
 function quizReducer(state: TQuiz, action: TQuizAction) {
@@ -62,6 +64,9 @@ function quizReducer(state: TQuiz, action: TQuizAction) {
         step: newStep as number,
       };
     }
+    case QUIZ_ACTIONS.eraseState: {
+      return {};
+    }
     default: {
       return state;
     }
@@ -79,8 +84,50 @@ export function useQuizContext() {
   );
 
   useEffect(() => {
-    setQuizState(quizState);
-  }, [quizState, setQuizState]);
+    const cachedQuizState = getQuizState();
+
+    const setQuizData = async () => {
+      if (quizState.filePath) {
+        try {
+          const quizData = await getQuizData(quizState.filePath);
+
+          // Set quiz title
+          dispatch({
+            type: QUIZ_ACTIONS.setTitle,
+            payload: quizData?.quizTitle,
+          });
+          const questionsData = quizData?.questions; // Set Questions
+
+          const allQuestions = questionsData?.map((questionContent, index) => {
+            const [question, ...options] = getQuestionData(questionContent);
+
+            const answer = options[0]; // First option is always the correct answer
+
+            // List options in scrambled order
+            const scrambledOptions = scrambleOrder(options);
+
+            const currentQuestion: TQuestion = {
+              index,
+              question,
+              options: scrambledOptions,
+              answer,
+            };
+
+            return currentQuestion;
+          });
+
+          dispatch({ type: QUIZ_ACTIONS.setQuestions, payload: allQuestions });
+        } catch (error) {
+          console.error("Error extracting PDF text:", error);
+        }
+      }
+    };
+
+    // Only set quiz data on empty cache
+    if (!cachedQuizState.filePath) void setQuizData();
+
+    setQuizState(quizState); // Persist data on every action dispatched
+  }, [getQuizState, quizState, setQuizState]);
 
   return { quizState, dispatch };
 }

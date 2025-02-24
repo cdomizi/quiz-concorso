@@ -1,4 +1,3 @@
-import { useQuizCache } from "@/hooks/useQuizCache";
 import { QUIZ_ACTIONS, useQuizContext } from "@/hooks/useQuizContext";
 import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
 import { useNavigate, useRouter } from "@tanstack/react-router";
@@ -6,7 +5,6 @@ import { useNavigate, useRouter } from "@tanstack/react-router";
 export function Dashboard() {
   const router = useRouter();
   const navigate = useNavigate();
-  const { deleteQuizState } = useQuizCache();
 
   const {
     quizState: { title, questions },
@@ -18,9 +16,10 @@ export function Dashboard() {
     await navigate({ to: "/quiz" });
   }
 
-  async function endQuiz() {
-    deleteQuizState();
+  async function exitQuiz() {
+    dispatch({ type: QUIZ_ACTIONS.eraseState });
     await router.invalidate();
+    await navigate({ to: "/" });
   }
 
   return (
@@ -41,10 +40,10 @@ export function Dashboard() {
       <button
         type="button"
         onClick={() => {
-          void endQuiz();
+          void exitQuiz();
         }}
       >
-        Termina
+        Esci
       </button>
       <div>
         {questions?.map((question) => (

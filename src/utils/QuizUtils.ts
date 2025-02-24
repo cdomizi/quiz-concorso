@@ -69,6 +69,32 @@ export async function getQuizData(filePath: string) {
   }
 }
 
+export function getQuestionData(questionContent: string) {
+  const optionRegex = new RegExp(/\s?\[[abcd]\]\s?/);
+
+  return questionContent.split(optionRegex);
+}
+
+export function scrambleOrder(arr: string[]) {
+  const scrambledArr = [];
+
+  // Array of indices representing the original order
+  const indices = Array.from(Array(arr.length).keys());
+
+  // Shuffle the indices
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+
+  // Rearrange the elements based on the shuffled indices
+  for (const i of indices) {
+    scrambledArr.push(arr[indices[i]]);
+  }
+
+  return scrambledArr;
+}
+
 export function formatQuestionIndex(index: number) {
   // Transform 0-based into 1-based index
   return index + 1;
