@@ -15,6 +15,7 @@ export type TQuiz = {
   title?: string;
   questions?: TQuestion[];
   step?: number;
+  submitted?: boolean;
 };
 
 export type TQuizAction = {
@@ -32,6 +33,7 @@ export const QUIZ_ACTIONS = {
   setTitle: "setTitle",
   setQuestions: "setQuestions",
   setStep: "setStep",
+  setSubmitted: "setSubmitted",
   eraseState: "eraseState",
 } as const;
 
@@ -62,6 +64,12 @@ function quizReducer(state: TQuiz, action: TQuizAction) {
       return {
         ...state,
         step: newStep as number,
+      };
+    }
+    case QUIZ_ACTIONS.setSubmitted: {
+      return {
+        ...state,
+        submitted: true,
       };
     }
     case QUIZ_ACTIONS.eraseState: {

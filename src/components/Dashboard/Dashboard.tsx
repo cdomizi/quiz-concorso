@@ -16,6 +16,10 @@ export function Dashboard() {
     await navigate({ to: "/quiz" });
   }
 
+  function submit() {
+    dispatch({ type: QUIZ_ACTIONS.setSubmitted });
+  }
+
   async function exitQuiz() {
     dispatch({ type: QUIZ_ACTIONS.eraseState });
     await router.invalidate();
@@ -36,6 +40,9 @@ export function Dashboard() {
         }}
       >
         Inizia
+      </button>
+      <button type="button" onClick={submit}>
+        Termina
       </button>
       <button
         type="button"

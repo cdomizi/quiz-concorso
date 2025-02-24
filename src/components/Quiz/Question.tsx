@@ -1,3 +1,4 @@
+import { useQuizContext } from "@/hooks/useQuizContext";
 import { ButtonLink } from "@components/ButtonLink";
 
 type FormStepProps = {
@@ -10,7 +11,6 @@ type FormStepProps = {
   onNext: () => void;
   goToFirst: () => void;
   goToLast: () => void;
-  selectedAnswer?: string;
   isLast: boolean;
 };
 
@@ -24,11 +24,33 @@ export function Question({
   onNext,
   goToFirst,
   goToLast,
-  selectedAnswer,
   isLast,
 }: FormStepProps) {
+  const {
+    quizState: { questions, submitted },
+  } = useQuizContext();
+
   const questionNumber = index + 1;
   const isFirst = index <= 0;
+
+  const answer = questions![index].answer;
+  const selectedAnswer = questions![index].selectedAnswer;
+
+  const OPTION_STATUS = {
+    correct: "correct",
+    wrong: "wrong",
+  } as const;
+
+  function getClassName(option: string) {
+    const className =
+      option === answer
+        ? OPTION_STATUS.correct
+        : option === selectedAnswer
+          ? OPTION_STATUS.wrong
+          : "";
+
+    return submitted ? className : "";
+  }
 
   return (
     <div>
@@ -39,7 +61,7 @@ export function Question({
         <legend>{question}</legend>
         {options.map((option, optionIndex) => (
           <div key={optionIndex}>
-            <label>
+            <label className={getClassName(option)}>
               <input
                 key={optionIndex}
                 type="radio"
@@ -47,6 +69,7 @@ export function Question({
                 value={option}
                 onChange={onChange}
                 defaultChecked={option === selectedAnswer}
+                disabled={submitted}
               />
               {option}
             </label>

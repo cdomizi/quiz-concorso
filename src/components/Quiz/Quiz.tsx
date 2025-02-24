@@ -53,7 +53,6 @@ export function Quiz() {
           onNext={handleNext}
           goToFirst={goToFirst}
           goToLast={goToLast}
-          selectedAnswer={questions[step]?.selectedAnswer}
           isLast={isLast}
         />
       )}
