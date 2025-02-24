@@ -4,7 +4,7 @@ import { TQuiz } from "./useQuizContext";
 const QUIZ_LOCALSTORAGE_KEY = "quizState";
 
 export function useQuizCache() {
-  const { getCurrentValue, setValue, deleteValue } = useLocalStorage<TQuiz>(
+  const { getCurrentValue, setValue } = useLocalStorage<TQuiz>(
     QUIZ_LOCALSTORAGE_KEY
   );
 
@@ -17,6 +17,5 @@ export function useQuizCache() {
   return {
     getQuizState,
     setQuizState: setValue,
-    deleteQuizState: deleteValue,
   };
 }
