@@ -1,4 +1,5 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import { useQuizCache } from "./useQuizCache";
 
 export type TQuiz = {
   filePath?: string;
@@ -40,7 +41,18 @@ function quizReducer(state: TQuiz, action: TQuizAction) {
 }
 
 export function useQuizContext() {
-  const [quizState, dispatch] = useReducer(quizReducer, initialState);
+  // Retrieve cached value for quizState
+  const { getQuizState, setQuizState } = useQuizCache();
+
+  const [quizState, dispatch] = useReducer(
+    quizReducer,
+    initialState,
+    getQuizState
+  );
+
+  useEffect(() => {
+    setQuizState(quizState);
+  }, [quizState, setQuizState]);
 
   return { quizState, dispatch };
 }

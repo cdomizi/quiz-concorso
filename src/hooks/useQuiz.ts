@@ -1,7 +1,7 @@
 import QuizContext from "@contexts/QuizContext";
+import { QUIZ_ACTIONS } from "@hooks/useQuizContext";
 import { getQuizData } from "@utils/QuizUtils";
 import { useContext, useEffect, useState } from "react";
-import { QUIZ_ACTIONS } from "./useQuizContext";
 
 type TQuestion = {
   index: number;
