@@ -55,7 +55,7 @@ export function Question({
   return (
     <div>
       <div>
-        {questionNumber} / {total}
+        Domanda {questionNumber} di {total}
       </div>
       <fieldset>
         <legend>{question}</legend>
@@ -77,7 +77,7 @@ export function Question({
         ))}
       </fieldset>
       <div>
-        <ButtonLink to="/dashboard">Pagina principale</ButtonLink>
+        <ButtonLink to="/dashboard">Vai al riepilogo</ButtonLink>
         <button
           type="button"
           id="goToFirstButton"

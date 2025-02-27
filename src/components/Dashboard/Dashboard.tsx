@@ -53,7 +53,7 @@ export function Dashboard() {
               Punteggio: {points} / {totalPoints}
             </b>
           </p>
-          <p>Risposte: {resultDetail}</p>
+          <p>Risposte esatte: {resultDetail}</p>
         </div>
       )}
       <button
