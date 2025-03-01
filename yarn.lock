@@ -920,20 +920,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-router@npm:^1.111.11":
-  version: 1.111.11
-  resolution: "@tanstack/react-router@npm:1.111.11"
+"@tanstack/react-router@npm:^1.112.0":
+  version: 1.112.0
+  resolution: "@tanstack/react-router@npm:1.112.0"
   dependencies:
     "@tanstack/history": "npm:1.99.13"
     "@tanstack/react-store": "npm:^0.7.0"
-    "@tanstack/router-core": "npm:^1.111.7"
+    "@tanstack/router-core": "npm:^1.112.0"
     jsesc: "npm:^3.1.0"
     tiny-invariant: "npm:^1.3.3"
     tiny-warning: "npm:^1.0.3"
   peerDependencies:
     react: ">=18.0.0 || >=19.0.0"
     react-dom: ">=18.0.0 || >=19.0.0"
-  checksum: 10c0/2b92b380e247fdb8cfb18695cf1a8de7b4629a913d3d57b6653dda9790672f829c61d993e40b9fcff5ac2c74a02c59f359ddd28b1ce7f1f2fb17f7337aabd475
+  checksum: 10c0/dafe944dc27f6d37eb9eaba06fb9d530818c0b495396954c0cb12ef3177e56a5d9f91f1ef51ed2ab4fa33cf41962f894f1e94340b1ddcf777a45397d56e3e326
   languageName: node
   linkType: hard
 
@@ -950,36 +950,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/router-core@npm:^1.111.7":
-  version: 1.111.7
-  resolution: "@tanstack/router-core@npm:1.111.7"
+"@tanstack/router-core@npm:^1.112.0":
+  version: 1.112.0
+  resolution: "@tanstack/router-core@npm:1.112.0"
   dependencies:
     "@tanstack/history": "npm:1.99.13"
     "@tanstack/store": "npm:^0.7.0"
-  checksum: 10c0/5f4973a4af92122dfd9aadbbbe25fcfb1e2de62f09744963fb93a280d86f4b50835de801432c1dd5862379e050ace41ef20ff62a80c5cb553e56d7ad5b04428f
+  checksum: 10c0/291974b8bff826781a8611ee40342a795fbda4025089538a0d7898a8a4a0ebe52d8fe3807d654e25ef961fc1965edadf579713cb789e992e9dc35ec69acbbbd1
   languageName: node
   linkType: hard
 
-"@tanstack/router-generator@npm:^1.111.12":
-  version: 1.111.12
-  resolution: "@tanstack/router-generator@npm:1.111.12"
+"@tanstack/router-generator@npm:^1.112.0":
+  version: 1.112.0
+  resolution: "@tanstack/router-generator@npm:1.112.0"
   dependencies:
     "@tanstack/virtual-file-routes": "npm:^1.99.0"
     prettier: "npm:^3.5.0"
     tsx: "npm:^4.19.2"
     zod: "npm:^3.24.1"
   peerDependencies:
-    "@tanstack/react-router": ^1.111.11
+    "@tanstack/react-router": ^1.112.0
   peerDependenciesMeta:
     "@tanstack/react-router":
       optional: true
-  checksum: 10c0/4393b949b5a57f4b132f6e50b451122b82b729ae3db25d1f054f62f68c49efd0bbca16622de7cc79282fbe380f66bdd795d916467e3841310b0acd718eb184d8
+  checksum: 10c0/5e9e4ccdb30dab8836818ae28d068659fd56a5225684887a88a27ba0faea20195b21c8f6c74b3887d3a12a56b923b6dc4d1279c208c5a9bf3f992421c139735a
   languageName: node
   linkType: hard
 
-"@tanstack/router-plugin@npm:^1.111.12":
-  version: 1.111.12
-  resolution: "@tanstack/router-plugin@npm:1.111.12"
+"@tanstack/router-plugin@npm:^1.112.0":
+  version: 1.112.0
+  resolution: "@tanstack/router-plugin@npm:1.112.0"
   dependencies:
     "@babel/core": "npm:^7.26.8"
     "@babel/plugin-syntax-jsx": "npm:^7.25.9"
@@ -987,8 +987,8 @@ __metadata:
     "@babel/template": "npm:^7.26.8"
     "@babel/traverse": "npm:^7.26.8"
     "@babel/types": "npm:^7.26.8"
-    "@tanstack/router-core": "npm:^1.111.7"
-    "@tanstack/router-generator": "npm:^1.111.12"
+    "@tanstack/router-core": "npm:^1.112.0"
+    "@tanstack/router-generator": "npm:^1.112.0"
     "@tanstack/router-utils": "npm:^1.102.2"
     "@tanstack/virtual-file-routes": "npm:^1.99.0"
     "@types/babel__core": "npm:^7.20.5"
@@ -1000,7 +1000,7 @@ __metadata:
     zod: "npm:^3.24.1"
   peerDependencies:
     "@rsbuild/core": ">=1.0.2"
-    "@tanstack/react-router": ^1.111.11
+    "@tanstack/react-router": ^1.112.0
     vite: ">=5.0.0 || >=6.0.0"
     vite-plugin-solid: ^2.11.2
     webpack: ">=5.92.0"
@@ -1015,7 +1015,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/79d71825f5e71ba6050b5b8122d0beb2aacb27436b663383a52c7e3e9da09a0ce859c4fc92ccd07b8a1f529a9be222dcedb1e59fde56b4dc9a9346b55327853f
+  checksum: 10c0/be3f8365ce7c6805d6a20268eee4cbf47abd7a35b3300c777f8360eb2d00f712fce6b554fb6c4a241d7b52eabed890d331117bd0224b49fa110237030dbfdad0
   languageName: node
   linkType: hard
 
@@ -1114,12 +1114,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.13.5":
-  version: 22.13.5
-  resolution: "@types/node@npm:22.13.5"
+"@types/node@npm:^22.13.8":
+  version: 22.13.8
+  resolution: "@types/node@npm:22.13.8"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10c0/a2e7ed7bb0690e439004779baedeb05159c5cc41ef6d81c7a6ebea5303fde4033669e1c0e41ff7453b45fd2fea8dbd55fddfcd052950c7fcae3167c970bca725
+  checksum: 10c0/bfc92b734a9dce6ac5daee0a52feccdf5dcb3804d895e4bc5384e2f4644612b8801725cd03c8c3c0888fb5eeb16b875877ac44b77641e0196dc1a837b1c2a366
   languageName: node
   linkType: hard
 
@@ -2395,12 +2395,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "eslint-plugin-react-hooks@npm:5.1.0"
+"eslint-plugin-react-hooks@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "eslint-plugin-react-hooks@npm:5.2.0"
   peerDependencies:
     eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
-  checksum: 10c0/37ef76e1d916d46ab8e93a596078efcf2162e2c653614437e0c54e31d02a5dadabec22802fab717effe257aeb4bdc20c2a710666a89ab1cf07e01e614dde75d8
+  checksum: 10c0/1c8d50fa5984c6dea32470651807d2922cc3934cf3425e78f84a24c2dfd972e7f019bee84aefb27e0cf2c13fea0ac1d4473267727408feeb1c56333ca1489385
   languageName: node
   linkType: hard
 
@@ -4493,10 +4493,10 @@ __metadata:
   resolution: "quiz-concorso@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.21.0"
-    "@tanstack/react-router": "npm:^1.111.11"
-    "@tanstack/router-plugin": "npm:^1.111.12"
+    "@tanstack/react-router": "npm:^1.112.0"
+    "@tanstack/router-plugin": "npm:^1.112.0"
     "@types/gh-pages": "npm:^6.1.0"
-    "@types/node": "npm:^22.13.5"
+    "@types/node": "npm:^22.13.8"
     "@types/react": "npm:^19.0.10"
     "@types/react-dom": "npm:^19.0.4"
     "@typescript-eslint/eslint-plugin": "npm:^8.25.0"
@@ -4508,7 +4508,7 @@ __metadata:
     eslint-import-resolver-typescript: "npm:^3.8.3"
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-react: "npm:^7.37.4"
-    eslint-plugin-react-hooks: "npm:^5.1.0"
+    eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-react-refresh: "npm:^0.4.19"
     gh-pages: "npm:^6.3.0"
     globals: "npm:^16.0.0"
@@ -4519,7 +4519,7 @@ __metadata:
     react-dom: "npm:^19.0.0"
     react-error-boundary: "npm:^5.0.0"
     react-pdf: "npm:^9.2.1"
-    typescript: "npm:~5.7.3"
+    typescript: "npm:~5.8.2"
     typescript-eslint: "npm:^8.25.0"
     vite: "npm:^6.2.0"
   languageName: unknown
@@ -5527,23 +5527,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.7.3":
-  version: 5.7.3
-  resolution: "typescript@npm:5.7.3"
+"typescript@npm:~5.8.2":
+  version: 5.8.2
+  resolution: "typescript@npm:5.8.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/b7580d716cf1824736cc6e628ab4cd8b51877408ba2be0869d2866da35ef8366dd6ae9eb9d0851470a39be17cbd61df1126f9e211d8799d764ea7431d5435afa
+  checksum: 10c0/5c4f6fbf1c6389b6928fe7b8fcd5dc73bb2d58cd4e3883f1d774ed5bd83b151cbac6b7ecf11723de56d4676daeba8713894b1e9af56174f2f9780ae7848ec3c6
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A~5.7.3#optional!builtin<compat/typescript>":
-  version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+"typescript@patch:typescript@npm%3A~5.8.2#optional!builtin<compat/typescript>":
+  version: 5.8.2
+  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6fd7e0ed3bf23a81246878c613423730c40e8bdbfec4c6e4d7bf1b847cbb39076e56ad5f50aa9d7ebd89877999abaee216002d3f2818885e41c907caaa192cc4
+  checksum: 10c0/5448a08e595cc558ab321e49d4cac64fb43d1fa106584f6ff9a8d8e592111b373a995a1d5c7f3046211c8a37201eb6d0f1566f15cdb7a62a5e3be01d087848e2
   languageName: node
   linkType: hard
 

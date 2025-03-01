@@ -1,16 +1,20 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import App from "@/App";
-import { createRouter } from "@tanstack/react-router";
+import { createHashHistory, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 
 // Import the generated route tree
 import { routeTree } from "@/routeTree.gen";
 
+// Set up hash routing for deployment on GitHub pages
+const hashHistory = createHashHistory();
+
 // Create a new router instance
 export const router = createRouter({
   routeTree,
   basepath: "/quiz-concorso/",
+  history: hashHistory,
   context: {
     quizState: undefined!,
     dispatch: undefined!,
