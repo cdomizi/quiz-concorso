@@ -1,4 +1,5 @@
 import { QUIZ_ACTIONS, useQuizContext } from "@/hooks/useQuizContext";
+import { useRedirect } from "@/hooks/useRedirect";
 import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
 import { useNavigate, useRouter } from "@tanstack/react-router";
 
@@ -7,9 +8,16 @@ export function Dashboard() {
   const navigate = useNavigate();
 
   const {
-    quizState: { title, questions, submitted },
+    quizState: { filePath, title, questions, submitted },
     dispatch,
   } = useQuizContext();
+
+  // Redirect user to home page if no quiz file has been selected
+  const redirectToHome = useRedirect({
+    destination: "/",
+    condition: !filePath,
+  });
+  if (redirectToHome) redirectToHome();
 
   async function handleOnClick(index: number) {
     dispatch({ type: QUIZ_ACTIONS.setStep, payload: index });
@@ -65,7 +73,7 @@ export function Dashboard() {
       >
         Inizia
       </button>
-      <button type="button" onClick={submit}>
+      <button type="button" onClick={submit} disabled={submitted}>
         Termina
       </button>
       <button

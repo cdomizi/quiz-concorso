@@ -1,11 +1,19 @@
 import { QUIZ_ACTIONS, useQuizContext } from "@/hooks/useQuizContext";
+import { useRedirect } from "@/hooks/useRedirect";
 import { Question } from "@components/Quiz/Question";
 
 export function Quiz() {
   const {
-    quizState: { questions, step = 0 },
+    quizState: { filePath, questions, step = 0 },
     dispatch,
   } = useQuizContext();
+
+  // Redirect user to home page if no quiz file has been selected
+  const redirectToHome = useRedirect({
+    destination: "/",
+    condition: !filePath,
+  });
+  if (redirectToHome) redirectToHome();
 
   const isLast = !!questions?.length && step === questions.length - 1;
 

@@ -26,6 +26,7 @@ export type TQuizAction = {
 const initialState: TQuiz = {
   filePath: undefined,
   step: 0,
+  submitted: false,
 };
 
 export const QUIZ_ACTIONS = {

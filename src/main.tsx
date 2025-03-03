@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import App from "@/App";
-import { createMemoryHistory, createRouter } from "@tanstack/react-router";
+import { createHashHistory, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 
@@ -8,15 +8,12 @@ import ReactDOM from "react-dom/client";
 import { routeTree } from "@/routeTree.gen";
 
 // Set up memory routing for deployment on GitHub pages
-const memoryHistory = createMemoryHistory({
-  initialEntries: ["/"],
-});
+const hashHistory = createHashHistory();
 
 // Create a new router instance
 export const router = createRouter({
   routeTree,
-  basepath: "/quiz-concorso/",
-  history: memoryHistory,
+  history: hashHistory,
   context: {
     quizState: undefined!,
     dispatch: undefined!,
