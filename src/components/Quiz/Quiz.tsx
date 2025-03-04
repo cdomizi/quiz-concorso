@@ -1,6 +1,6 @@
 import { QUIZ_ACTIONS, useQuizContext } from "@/hooks/useQuizContext";
-import { useRedirect } from "@/hooks/useRedirect";
 import { Question } from "@components/Quiz/Question";
+import { useRedirect } from "@hooks/useRedirect";
 
 export function Quiz() {
   const {

@@ -1,7 +1,8 @@
 import { QUIZ_ACTIONS, useQuizContext } from "@/hooks/useQuizContext";
-import { useRedirect } from "@/hooks/useRedirect";
 import { DashboardQuestion } from "@components/Dashboard/DashboardQuestion";
+import { useRedirect } from "@hooks/useRedirect";
 import { useNavigate, useRouter } from "@tanstack/react-router";
+import { QuizResult } from "./QuizResult";
 
 export function Dashboard() {
   const router = useRouter();
@@ -34,17 +35,6 @@ export function Dashboard() {
     await navigate({ to: "/" });
   }
 
-  const totalAnswers = questions?.length || 50;
-  const correctAnswers =
-    questions?.filter((question) => question.selectedAnswer === question.answer)
-      .length || 0;
-  const totalPoints = totalAnswers * 2;
-  const points = correctAnswers * 2;
-  const minPassedPoints = 70;
-  const isQuizPassed = points >= minPassedPoints;
-  const result = isQuizPassed ? "Superato" : "Fallito";
-  const resultDetail = `${correctAnswers.toString()} / ${totalAnswers.toString()}`;
-
   return (
     <div>
       <h1>{title}</h1>
@@ -52,18 +42,7 @@ export function Dashboard() {
         Concorso ordinario 2023 - Scuola secondaria di primo e secondo grado
       </p>
       <p>Classe di concorso 2575</p>
-      {submitted && (
-        <div>
-          <hr />
-          <h2 className={isQuizPassed ? "success" : "wrong"}>Test {result}</h2>
-          <p>
-            <b>
-              Punteggio: {points} / {totalPoints}
-            </b>
-          </p>
-          <p>Risposte esatte: {resultDetail}</p>
-        </div>
-      )}
+      {submitted && <QuizResult />}
       <button
         type="button"
         disabled={submitted}
