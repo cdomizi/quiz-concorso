@@ -1,5 +1,6 @@
 import { QUIZ_ACTIONS } from "@/hooks/useQuizContext";
 import QuizContext from "@contexts/QuizContext";
+import { useNavigate } from "@tanstack/react-router";
 import { useContext } from "react";
 
 const QUIZ_FILES = [
@@ -31,33 +32,35 @@ function getOptionInfo(filePath: string) {
 const quizSelectOptions = QUIZ_FILES.map((filePath) => getOptionInfo(filePath));
 
 export function QuizFileSelect() {
-  const {
-    quizState: { filePath },
-    dispatch,
-  } = useContext(QuizContext);
+  const navigate = useNavigate();
 
-  function handleFileSelect(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedFilePath = event.target.value;
+  const { dispatch } = useContext(QuizContext);
 
-    dispatch({ type: QUIZ_ACTIONS.setFilePath, payload: selectedFilePath }); // Set state in parent component
+  async function handleFileSelect(event: React.MouseEvent<HTMLButtonElement>) {
+    const selectedFilePath = (event.target as HTMLButtonElement).value;
+
+    // Set file path in context
+    dispatch({ type: QUIZ_ACTIONS.setFilePath, payload: selectedFilePath });
+
+    // Navigate to the dashboard
+    await navigate({ to: "/dashboard" });
   }
 
   return (
     <>
-      <label htmlFor="file-select">Seleziona il quiz: </label>
-      <select
-        onChange={handleFileSelect}
-        defaultValue={filePath}
-        name="quizzes"
-        id="file-select"
-      >
-        {<option value={undefined}></option>}
-        {quizSelectOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.name}
-          </option>
-        ))}
-      </select>
+      <h1>Seleziona il quiz</h1>
+      {quizSelectOptions.map((option) => (
+        <button
+          key={option.value}
+          value={option.value}
+          onClick={(event) => {
+            void handleFileSelect(event);
+          }}
+          type="button"
+        >
+          {option.name}
+        </button>
+      ))}
     </>
   );
 }

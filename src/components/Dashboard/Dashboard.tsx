@@ -38,10 +38,7 @@ export function Dashboard() {
   return (
     <div>
       <h1>{title}</h1>
-      <p>
-        Concorso ordinario 2023 - Scuola secondaria di primo e secondo grado
-      </p>
-      <p>Classe di concorso 2575</p>
+      <p>Concorso ordinario 2023 - Scuola secondaria di I e II grado</p>
       {submitted && <QuizResult />}
       <button
         type="button"
